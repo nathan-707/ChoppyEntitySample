@@ -52,14 +52,14 @@ struct ImmersiveView: View {
 }
 func spawnCubeThatLagsWhenYouLaunchWithImmersionOn(){
     
-    var zPos: Float = -150
+    var zPos: Float = -90
     
     for _ in 0..<10 {
         let cube = ModelEntity(mesh: .generateBox(size: [5,0.1,1]), materials: [UnlitMaterial(color: .green)])
         cube.components.set(CollisionComponent(shapes: [.generateBox(size: [1,1,1])]))
         cube.components.set(PhysicsBodyComponent(massProperties: .default, material: .default, mode: .kinematic))
-        cube.components.set(PhysicsMotionComponent(linearVelocity: [0,0,25]))
-        cube.position = [-1,5,zPos]
+        cube.components.set(PhysicsMotionComponent(linearVelocity: [0,0,15]))
+        cube.position = [-1,3,zPos]
         zPos -= 2
         origin.addChild(cube)
     }
