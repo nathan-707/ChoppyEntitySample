@@ -51,12 +51,21 @@ struct ImmersiveView: View {
     }
 }
 func spawnCubeThatLagsWhenYouLaunchWithImmersionOn(){
-    let cube = ModelEntity(mesh: .generateBox(size: [2,2,2]), materials: [UnlitMaterial(color: .green)])
-    cube.components.set(CollisionComponent(shapes: [.generateBox(size: [1,1,1])]))
-    cube.components.set(PhysicsBodyComponent(massProperties: .default, material: .default, mode: .kinematic))
-    cube.components.set(PhysicsMotionComponent(linearVelocity: [0,0,35]))
-    cube.position = [0,10,-200]
-    origin.addChild(cube)
+    
+    var zPos: Float = -150
+    
+    for _ in 0..<10 {
+        let cube = ModelEntity(mesh: .generateBox(size: [5,0.1,1]), materials: [UnlitMaterial(color: .green)])
+        cube.components.set(CollisionComponent(shapes: [.generateBox(size: [1,1,1])]))
+        cube.components.set(PhysicsBodyComponent(massProperties: .default, material: .default, mode: .kinematic))
+        cube.components.set(PhysicsMotionComponent(linearVelocity: [0,0,25]))
+        cube.position = [-1,5,zPos]
+        zPos -= 2
+        origin.addChild(cube)
+    }
+
+    
+    
 }
 struct ToggleImmersiveSpaceButton: View {
     @Environment(AppModel.self) private var appModel
